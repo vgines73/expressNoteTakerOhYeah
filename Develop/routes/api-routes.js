@@ -10,5 +10,9 @@ router.get("/notes", (req, res) => {
     });
 });
 
+router.post("/notes", (req, res) => {
+    console.log(req.body);
+    res.send("oh yeah it's working!");
+});
 
 module.exports = router;
