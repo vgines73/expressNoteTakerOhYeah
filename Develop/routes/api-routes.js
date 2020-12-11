@@ -12,7 +12,7 @@ router.get("/notes", (req, res) => {
 
 // make new note
 router.post("/notes", (req, res) => {
-    console.log(req.body.tile);
+    //console.log(req.body);
     //res.send("oh yeah")
     fs.readFile("./db/db.json", "utf8", (err, data) => {
         if (err) throw err;
@@ -23,13 +23,12 @@ router.post("/notes", (req, res) => {
             title: req.body.title,
             text: req.body.text
         })
-        console.log(ohYeahNotes);
+        //console.log(ohYeahNotes);
 
-    //     fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes)), (err) => {
-    //         if (err) return res.JSON({ err: "sorry breh didn't add."});
-    //         return res.json({ msg: "oh yeah!"})
-    //     }
-
+        fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes), (err) => {
+            if (err) return res.json({ err: "sorry breh didn't add."});
+            return res.json({ msg: "oh yeah!"})
+        });
     });
 });
 
