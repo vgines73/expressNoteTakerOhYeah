@@ -40,7 +40,7 @@ router.post("/notes", (req, res) => {
     });
 });
 
-// delete a old note
+// delete a old note using id
 router.delete("/notes/:id", (req, res) => {
     //console.log(req.params.id)
     res.send("oh yeah")
@@ -48,14 +48,14 @@ router.delete("/notes/:id", (req, res) => {
         if (err) throw err;
         const ohYeahNotes = JSON.parse(data)
         const id = req.params.id
-
-        if (ohYeahNotes[id]) {
-            ohYeahNotes.splice(ohYeahNotes[id])
+        const deleteNote = ohYeahNotes[id]
+        if (deleteNote) {
+            ohYeahNotes.splice(deleteNote)
         }
         fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes), (err) => {
             if (err) return res.json({ err: "sorry breh didn't delete."});
             return res.json(ohYeahNotes)
-        })
-    })
+        });
+    });
 });
 module.exports = router;
