@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const fs = require("fs");
+const { title } = require("process");
+const { nanoid } = require("nanoid");
 
 // get notes
 router.get("/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (err, data) => {
         if (err) throw err;
         //console.log(data);
-        res.json(JSON.parse(data));
+        return res.json(JSON.parse(data));
     });
 });
 
@@ -18,11 +20,16 @@ router.post("/notes", (req, res) => {
         if (err) throw err;
 
         const ohYeahNotes = JSON.parse(data);
-
-        ohYeahNotes.push({
+        
+     
+        let id = nanoid(5);
+        let newNotes = {
+            id: id,
             title: req.body.title,
             text: req.body.text
-        })
+        }
+
+        ohYeahNotes.push(newNotes)
         //console.log(ohYeahNotes);
 
         fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes), (err) => {
