@@ -3,6 +3,7 @@ const fs = require("fs");
 const { nanoid } = require("nanoid");
 
 
+
 // get notes
 router.get("/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (err, data) => {
@@ -41,12 +42,20 @@ router.post("/notes", (req, res) => {
 
 // delete a old note
 router.delete("/notes/:id", (req, res) => {
-    console.log(req.params.id)
-    //res.send("oh yeah")
-    let id = getUserIndex(req.params.id)
-    
-    if (id === -1) return res.status(404).json({})
-    notes.splice(id, 1)
-    res.json(notes)
+    //console.log(req.params.id)
+    res.send("oh yeah")
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
+        if (err) throw err;
+        const ohYeahNotes = JSON.parse(data)
+        const id = req.params.id
+
+        if (ohYeahNotes[id]) {
+            ohYeahNotes.splice(ohYeahNotes[id])
+        }
+        fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes), (err) => {
+            if (err) return res.json({ err: "sorry breh didn't delete."});
+            return res.json(ohYeahNotes)
+        })
+    })
 });
 module.exports = router;
