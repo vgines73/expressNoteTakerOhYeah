@@ -1,6 +1,5 @@
 let noteTitle;
 let noteText;
-let noteId;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
@@ -9,7 +8,6 @@ let noteList;
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
-  noteId = document.querySelector('.note-id');
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
@@ -29,7 +27,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch(`/api/notes/`, {
+  fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -57,15 +55,13 @@ const renderActiveNote = () => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
-    noteTitle.setAttribute( true);
-    noteText.setAttribute(true);
+    noteTitle.setAttribute('readonly', true);
+    noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
-    noteId.value = activeNote.id;
   } else {
     noteTitle.value = '';
     noteText.value = '';
-    noteId.value = '';
   }
 };
 

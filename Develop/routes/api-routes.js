@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const fs = require("fs");
-const { title } = require("process");
 const { nanoid } = require("nanoid");
+
 
 // get notes
 router.get("/notes", (req, res) => {
@@ -22,9 +22,9 @@ router.post("/notes", (req, res) => {
         const ohYeahNotes = JSON.parse(data);
         
      
-        let id = nanoid(5);
+        let noteId = nanoid(5);
         let newNotes = {
-            id: id,
+            id: noteId,
             title: req.body.title,
             text: req.body.text
         }
@@ -39,4 +39,14 @@ router.post("/notes", (req, res) => {
     });
 });
 
+// delete a old note
+router.delete("/notes/:id", (req, res) => {
+    console.log(req.params.id)
+    //res.send("oh yeah")
+    let id = getUserIndex(req.params.id)
+    
+    if (id === -1) return res.status(404).json({})
+    notes.splice(id, 1)
+    res.json(notes)
+});
 module.exports = router;
