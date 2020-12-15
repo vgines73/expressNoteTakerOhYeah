@@ -1,3 +1,4 @@
+// require 
 const router = require("express").Router();
 const fs = require("fs");
 const { nanoid } = require("nanoid");
@@ -19,14 +20,14 @@ router.post("/notes", (req, res) => {
         if (err) throw err;
 
         const ohYeahNotes = JSON.parse(data);
-        
+        // using nanoid to create an id for each posted note
         let noteId = nanoid(5);
         let newNotes = {
             id: noteId,
             title: req.body.title,
             text: req.body.text
         }
-
+        // creates post note with id
         ohYeahNotes.push(newNotes)
         //console.log(ohYeahNotes);
 
@@ -45,6 +46,7 @@ router.delete("/notes/:id", (req, res) => {
         if (err) return res.json({ msg: "error reading" })
         let ohYeahNotes = JSON.parse(data)
         const id = req.params.id
+        // create a forloop to look at each object in array to identify which id is needed to splice that object.
         for (let i = 0; i < ohYeahNotes.length; i++) {
             if (ohYeahNotes[i].id === id) {
                 ohYeahNotes.splice(i, 1)
@@ -52,11 +54,11 @@ router.delete("/notes/:id", (req, res) => {
                 console.log(ohYeahNotes)
             };
         };
+        // update lists of notes after deletion.
         fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes), (err) => {
             if (err) return res.json({ err: "sorry breh didn't delete."});
             return res.json({ msg: "message deleted" })
         });
-
     });
 });
 module.exports = router;
