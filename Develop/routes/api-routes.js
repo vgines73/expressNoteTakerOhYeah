@@ -45,16 +45,18 @@ router.delete("/notes/:id", (req, res) => {
         if (err) return res.json({ msg: "error reading" })
         let ohYeahNotes = JSON.parse(data)
         const id = req.params.id
-        const deleteNote = ohYeahNotes[id]
-        if (deleteNote === id) {
-            ohYeahNotes.splice(i, 1)
-            //deleteNote.remove();
-            console.log(ohYeahNotes)
-        }
+        for (let i = 0; i < ohYeahNotes.length; i++) {
+            if (ohYeahNotes[i].id === id) {
+                ohYeahNotes.splice(i, 1)
+                //deleteNote.remove();
+                console.log(ohYeahNotes)
+            };
+        };
         fs.writeFile("./db/db.json", JSON.stringify(ohYeahNotes), (err) => {
             if (err) return res.json({ err: "sorry breh didn't delete."});
-            return res.json({ msg: "deleted" })
+            return res.json({ msg: "message deleted" })
         });
+
     });
 });
 module.exports = router;
