@@ -58,10 +58,10 @@ Viewing saved note by clicking saved note on left side.
 
 
 ## Demo:
-click on link to veiw the demo: https://drive.google.com/file/d/19O5TncL7s09eFcotS7T4y81DsARguvUJ/view
+click on link to veiw the demo: https://drive.google.com/file/d/1Vks7zDG-7DICpRm89N8vWtNfsn_mni1v/view
 
 ## Challenges:
-The instructions, stated we would be only working on the back end, but there was a few bugs in the front end in index.js. line 58 and 59 were commented out in order for me to edit saved notes. Not only that, I could also now click on the write icon and can now write new notes after clicking the write icon. On line 62, noteText.value = activeNote.title, when it should've been noteText.value = activeNote.text; Doing this I was now able to see the actual saved note on the right side of the app. I'm not to big on doing the bonuses on the assigment, but because I finished early I decided to give it a shot. After completing the delete routes, I needed to figure out how to use Heroku. For some reason it wouldn't push. 
+The instructions, stated we would be only working on the back end, but there was a few bugs in the front end in index.js. line 58 and 59 were commented out in order for me to edit saved notes. Not only that, I could also now click on the write icon and can now write new notes after clicking the write icon. On line 62, noteText.value = activeNote.title, when it should've been noteText.value = activeNote.text; Doing this I was now able to see the actual saved note on the right side of the app. I'm not to big on doing the bonuses on the assigment, but because I finished early I decided to give it a shot. After completing the delete routes, I needed to figure out how to use Heroku. For some reason it wouldn't push. Realized it needed to come out of the develop folder i originally created so heroku could access it. Then had to log into heroku in my terminal. After that it finally deployed.
 
 
 
