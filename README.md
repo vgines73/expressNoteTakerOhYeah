@@ -72,6 +72,9 @@ Link to my Github profile: https://github.com/vgines73
 
 Link to my Express Note Taker: https://github.com/vgines73/expressNoteTakerOhYeah
 
+Link to Live URL from Heroku: https://note-taker-oh-yeah.herokuapp.com/
+
+
 You can reach me by email at: vgines73@gmail.com
 
 © 2020 Vincent Gines. All rights reserved. 
