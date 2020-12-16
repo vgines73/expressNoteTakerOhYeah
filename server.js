@@ -3,7 +3,7 @@ const express = require("express");
 // tells node creating "express" server
 const app = express();
 // initial port
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // router backend
 const apiRoutes = require("./routes/api-routes");
